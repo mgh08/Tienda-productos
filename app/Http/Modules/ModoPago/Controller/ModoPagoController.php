@@ -35,7 +35,7 @@ class ModoPagoController extends Controller
     public function listar(): JsonResponse
     {
         try {
-            $modoPagos =  $this->modoPagoRepository->listar();
+            $modoPagos =  $this->modoPagoRepository->listarModoPagos();
             return response()->json($modoPagos, Response::HTTP_OK);
         } catch (\Throwable $th) {
             return response()->json([

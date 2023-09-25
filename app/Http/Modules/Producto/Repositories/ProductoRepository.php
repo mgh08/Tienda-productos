@@ -14,4 +14,11 @@ class ProductoRepository extends BaseRepository
         $this->productoModel = $productoModel;
         parent::__construct($this->productoModel);
     }
+
+    public function listarProductoConCategoria()
+    {
+        return $this->productoModel->select('productos.nombre', 'productos.precio', 'productos.stock', 'categorias.nombre as nombreCategoria')
+                                    ->join('categorias', 'productos.categoria_id', 'categorias.id')
+                                    ->get();
+    }
 }

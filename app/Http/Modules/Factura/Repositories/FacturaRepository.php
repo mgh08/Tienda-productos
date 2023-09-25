@@ -14,4 +14,21 @@ class FacturaRepository extends BaseRepository
         $this->facturaModel = $facturaModel;
         parent::__construct($this->facturaModel);
     }
+
+    /**
+     * listar facturas y detalle de tabla intermedia
+     *
+     * @return void
+     * @autor Manuela
+     */
+    public function listarFacturas()
+    {
+        return $this->facturaModel->select('facturas.id' ,'facturas.fecha', 'clientes.nombre as nombreCliente',
+                                            'modo_pagos.nombre as medioPAgo', 'factura_producto.cantidad',
+                                            'factura_producto.precio as totalVenta')
+                                    ->join('clientes', 'clientes.id', 'facturas.cliente_id')
+                                    ->join('modo_pagos','modo_pagos.id', 'facturas.modo_pago_id')
+                                    ->join('factura_producto', 'factura_producto.factura_id', 'facturas.id')
+                                    ->get();
+    }
 }

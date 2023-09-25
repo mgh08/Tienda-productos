@@ -4,10 +4,11 @@ namespace App\Http\Modules\Producto\Model;
 
 use App\Http\Modules\Categoria\Model\Categoria;
 use App\Http\Modules\Detalle\Model\Detalle;
+use App\Http\Modules\Factura\Model\Factura;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Producto extends Model
 {
@@ -20,20 +21,9 @@ class Producto extends Model
         'categoria_id'
     ];
 
-    protected $appends = ['NombreCategoria'];
-
-    public function categoria(): BelongsTo
+    public function facturas(): BelongsToMany
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsToMany(Factura::class, 'factura_producto')->withPivot('cantidad', 'precio');
     }
 
-    public function detalle(): HasMany
-    {
-        return $this->hasMany(Detalle::class);
-    }
-
-    public function getNombreCategoriaAttribute()
-    {
-        return $this->categoria->nombre;
-    }
 }

@@ -5,10 +5,11 @@ namespace App\Http\Modules\Factura\Model;
 use App\Http\Modules\Cliente\Model\Cliente;
 use App\Http\Modules\Detalle\Model\Detalle;
 use App\Http\Modules\ModoPago\Model\ModoPago;
+use App\Http\Modules\Producto\Model\Producto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Factura extends Model
 {
@@ -20,11 +21,9 @@ class Factura extends Model
         'modo_pago_id'
     ];
 
-    protected $appends = ['NombreCliente','MedioPago'];
-
-    public function detalle(): HasMany
+    public function productos(): BelongsToMany
     {
-        return $this->hasMany(Detalle::class);
+        return $this->belongsToMany(Producto::class, 'factura_producto')->withPivot('cantidad', 'precio');
     }
 
     public function cliente(): BelongsTo
@@ -37,13 +36,4 @@ class Factura extends Model
         return $this->belongsTo(ModoPago::class);
     }
 
-    public function getNombreClienteAttribute()
-    {
-        return $this->cliente->nombre;
-    }
-
-    public function getMedioPagoAttribute()
-    {
-        return $this->modoPago->nombre;
-    }
 }

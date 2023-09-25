@@ -36,7 +36,7 @@ class ClienteController extends Controller
     public function listar(): JsonResponse
     {
         try {
-            $clientes = $this->clienteRepository->listar();
+            $clientes = $this->clienteRepository->listarClientes();
             return response()->json($clientes, Response::HTTP_OK);
         } catch (\Throwable $th) {
             return response()->json([
@@ -102,4 +102,5 @@ class ClienteController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
+
 }

@@ -35,11 +35,12 @@ class ProductoController extends Controller
     public function listar(): JsonResponse
     {
         try {
-            $productos = $this->productoRepository->listar();
+            $productos = $this->productoRepository->listarProductoConCategoria();
             return response()->json($productos, Response::HTTP_OK);
         } catch (\Throwable $th) {
             return response()->json([
-                'mensaje' => 'Error al listar los productos!'
+                'mensaje' => 'Error al listar los productos!',
+                'ERROR' => $th->getMessage()
             ], Response::HTTP_BAD_REQUEST);
         }
     }

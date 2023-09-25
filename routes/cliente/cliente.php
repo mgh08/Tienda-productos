@@ -11,3 +11,5 @@ Route::prefix('cliente')->group(function(){
         Route::put('editar/{id}', 'editar');
     });
 });
+
+

@@ -14,4 +14,9 @@ class CategoriaRepository extends BaseRepository
         $this->categoriaModel = $categoriaModel;
         parent::__construct($this->categoriaModel);
     }
+
+    public function listarCategorias()
+    {
+        return $this->categoriaModel->select('nombre', 'descripcion')->orderBy('nombre')->get();
+    }
 }

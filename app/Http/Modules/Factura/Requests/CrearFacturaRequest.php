@@ -26,7 +26,10 @@ class CrearFacturaRequest extends FormRequest
         return [
             'fecha'         =>   'date|required',
             'cliente_id'    =>   'integer|required',
-            'modo_pago_id'  =>   'integer|required'
+            'modo_pago_id'  =>   'integer|required',
+            'cantidad'      =>   'required',
+            'precio'        =>   'required',
+            'productos'     =>   'required'
         ];
     }
 

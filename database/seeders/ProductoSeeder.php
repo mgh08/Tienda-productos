@@ -5,49 +5,68 @@ namespace Database\Seeders;
 use App\Http\Modules\Producto\Model\Producto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\Response;
 
 class ProductoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        $producto = new Producto();
-        $producto->nombre = "computador";
-        $producto->precio = 8000000;
-        $producto->stock = 20;
-        $producto->categoria_id = 1;
-        $producto->save();
+        try {
+            $productos = [
+                [
+                    'nombre' => 'computador',
+                    'precio' => 8000000,
+                    'stock' => 20,
+                    'categoria_id' => 1,
 
-        $producto = new Producto();
-        $producto->nombre = "mesa";
-        $producto->precio = 600000;
-        $producto->stock = 30;
-        $producto->categoria_id = 2;
-        $producto->save();
+                ],
+                [
+                    'nombre' => 'mesa',
+                    'precio' => 600000,
+                    'stock' => 30,
+                    'categoria_id' => 2,
 
-        $producto = new Producto();
-        $producto->nombre = "camara";
-        $producto->precio = 2000000;
-        $producto->stock = 40;
-        $producto->categoria_id = 1;
-        $producto->save();
+                ],
+                [
+                    'nombre' => 'camara',
+                    'precio' => 2000000,
+                    'stock' => 40,
+                    'categoria_id' => 1,
 
-        $producto = new Producto();
-        $producto->nombre = "papel higienico";
-        $producto->precio = 8000;
-        $producto->stock = 50;
-        $producto->categoria_id = 3;
-        $producto->save();
+                ],
+                [
+                    'nombre' => 'papel higiénico',
+                    'precio' => 8000,
+                    'stock' => 50,
+                    'categoria_id' => 3,
 
-        $producto = new Producto();
-        $producto->nombre = "silla";
-        $producto->precio = 900000;
-        $producto->stock = 25;
-        $producto->categoria_id = 2;
-        $producto->save();
+                ],
+                [
+                    'nombre' => 'silla',
+                    'precio' => 900000,
+                    'stock' => 25,
+                    'categoria_id' => 2,
 
-
+                ]
+            ];
+            foreach ($productos as $producto) {
+                Producto::updateOrCreate([
+                    'nombre' => $producto['nombre']
+                ],[
+                    'nombre' => $producto['nombre'],
+                    'precio' => $producto['precio'],
+                    'stock' => $producto['stock'],
+                    'categoria_id' => $producto['categoria_id']
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'mensaje' => 'Error al crear los productos'
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
+
 }

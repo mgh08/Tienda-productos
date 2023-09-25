@@ -14,4 +14,10 @@ class ModoPagoRepository extends BaseRepository
         $this->modoPagoModel = $modoPagoModel;
         parent::__construct($this->modoPagoModel);
     }
+
+    public function listarModoPagos()
+    {
+        $modoPagos = $this->modoPagoModel->select( 'nombre', 'otros_detalles')->get();
+        return $modoPagos;
+    }
 }

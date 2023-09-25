@@ -36,7 +36,7 @@ class CategoriaController extends Controller
     public function listar(): JsonResponse
     {
         try {
-            $categorias = $this->categoriaRepository->listar();
+            $categorias = $this->categoriaRepository->listarCategorias();
             return response()->json($categorias, Response::HTTP_OK);
         } catch (\Throwable $th) {
             return response()->json([
