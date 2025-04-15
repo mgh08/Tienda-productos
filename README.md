@@ -22,7 +22,6 @@ El objetivo fue diseñar una base sólida para aplicaciones web modernas, desaco
 - Servicios separados para la lógica de negocio
 - Uso avanzado de Eloquent (scopes, relaciones, mutadores)
 - Validaciones en tiempo real
-- PDFs dinámicos generados desde frontend
 - Rutas limpias y controladas por middleware
 - Código listo para testing
 
@@ -48,7 +47,7 @@ app/
 
 - Sistemas administrativos completos
 - Módulos CRUD avanzados
-- Integraciones con APIs REST
+- Integraciones con APIs REST  
 - Dashboards personalizados
 - Gestión de usuarios con roles
 - Formularios grandes con lógica en Vue 2
@@ -58,7 +57,7 @@ app/
 ## 🚀 ¿Cómo empezar?
 
 1. Clona el proyecto  
-   `git clone https://github.com/tuusuario/tu-repo.git`
+   `git clone https://github.com/mgh08/examen`
 
 2. Instala dependencias  
    `composer install`
