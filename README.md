@@ -32,13 +32,25 @@ El objetivo fue diseñar una base sólida para aplicaciones web modernas, desaco
 ```
 app/
 ├── Http/
-│   ├── Controllers/
-│   ├── Requests/
-├── Services/
-│   ├── EjemploServicio.php
-├── Repositories/
-│   ├── Interfaces/
-│   ├── Eloquent/
+│   ├── Modules/
+|   │   ├── Producto/
+|   |   │   ├── Controllers/
+|   |   │   ├── Models/
+|   |   │   ├── Requests/
+|   |   |   ├── Services/
+|   |   |   |── Repositories/
+|   │   ├── Cliente/
+|   |   │   ├── Controllers/
+|   |   │   ├── Models/
+|   |   │   ├── Requests/
+|   |   |   ├── Services/
+|   |   |   |── Repositories/
+|   │   ├── Factura/
+|   |   │   ├── Controllers/
+|   |   │   ├── Models/
+|   |   │   ├── Requests/
+|   |   |   ├── Services/
+|   |   |   |── Repositories/
 ```
 
 ---
